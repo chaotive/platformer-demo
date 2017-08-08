@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-    public int HP = 15;
+    public int collectedItems = 0;
+    public int hp;    
+    public float speed;
+    
+    void Start () {
+        hp = Config.game.playerHp;        
+        speed = Config.game.playerSpeed;        
+    }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    void Update()
+    {
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
+    }
 }
