@@ -16,10 +16,11 @@ public class Player : MonoBehaviour {
         body = GetComponent<Rigidbody2D>();        
     }
 
-    /*void Update()
+    void Update()
     {
-        transform.Translate(Vector2.right * speed * Time.deltaTime);        
-    }*/
+        if (Input.GetKey("space"))
+            print("space key was pressed");
+    }
 
     void FixedUpdate()
     {
