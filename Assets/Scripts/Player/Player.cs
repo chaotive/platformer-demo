@@ -8,7 +8,7 @@ public class Player : MonoBehaviour {
     public float speed;
     public float jumpForce = 1000;
 
-    private Vector2 maxVelocity = new Vector2(40f, 4f);
+    private Vector2 maxVelocity = new Vector2(10f, 8f);
 
     private bool keyPressed;
     private bool jumped;    
