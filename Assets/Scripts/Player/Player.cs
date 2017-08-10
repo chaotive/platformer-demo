@@ -7,28 +7,51 @@ public class Player : MonoBehaviour {
     public int hp;    
     public float speed;
     public float jumpForce = 1000;
-    public float maxVelocity = 40;
+
+    private Vector2 maxVelocity = new Vector2(40f, 4f);
+
+    private bool keyPressed;
+    private bool jumped;    
+    private bool onAir;
 
     private Rigidbody2D body;
-    private bool jumping;
 
     void Start () {
         hp = Config.game.playerHp;        
         speed = Config.game.playerSpeed;
 
         body = GetComponent<Rigidbody2D>();
-        jumping = false;        
+        keyPressed = false;
+
+        jumped = false;        
+        onAir = false;        
     }
 
     void Update()
     {
-        if (Input.GetKey("space")) jumping = true;
-        else jumping = false;        
+        if (Input.GetKey("space")) keyPressed = true;        
+        else keyPressed = false;        
     }
 
     void FixedUpdate()
     {
-        if (body.velocity.x < maxVelocity) body.AddForce(Vector2.right * speed * Time.deltaTime);
-        if (jumping) body.AddForce(Vector2.up * jumpForce * Time.deltaTime);        
+        if (body.velocity.x < maxVelocity.x) body.AddForce(Vector2.right * speed * Time.deltaTime);
+        
+        bool goingUp = false;
+        if (keyPressed && body.velocity.y < maxVelocity.y && !jumped) goingUp = true;
+        else if (onAir) jumped = true;
+        
+        if (goingUp)
+        {
+            body.AddForce(Vector2.up * jumpForce * Time.deltaTime);
+            onAir = true;            
+        }
+        
+        print(body.velocity + " goingUp:" + goingUp + " onAir:" + onAir + " jumped:" + jumped);
+    }
+
+    public void stopJumping() {        
+        onAir = false;
+        jumped = false;
     }
 }

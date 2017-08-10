@@ -9,8 +9,10 @@ public class Config : MonoBehaviour {
     public int damageAmount = 1;
 
     public static Config game;
-	
+    public static Player player;
+
 	void Start () {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         game = this;
 	}
 	
