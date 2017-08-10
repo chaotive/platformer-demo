@@ -6,9 +6,9 @@ public class Player : MonoBehaviour {
     public int collectedItems = 0;
     public int hp;    
     public float speed;
-    public float jumpForce = 1000;
+    public float jumpForce = 4000;
 
-    private Vector2 maxVelocity = new Vector2(10f, 8f);
+    private Vector2 maxVelocity = new Vector2(10f, 8.5f);
 
     private bool keyPressed;
     private bool jumped;    
@@ -43,6 +43,7 @@ public class Player : MonoBehaviour {
         
         if (goingUp)
         {
+            body.AddForce(Vector2.right * speed * Time.deltaTime);
             body.AddForce(Vector2.up * jumpForce * Time.deltaTime);
             onAir = true;            
         }
