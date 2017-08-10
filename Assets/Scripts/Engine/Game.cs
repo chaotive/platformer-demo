@@ -8,7 +8,7 @@ public class Game : MonoBehaviour {
     public Text items;
     
 	void Update () {        
-        hp.text = Config.player.hp.ToString();        
-        items.text = Config.player.collectedItems.ToString();        
+        hp.text = "HP: " + Config.player.hp.ToString();        
+        items.text = "Items: " + Config.player.items.ToString();        
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-    public int collectedItems = 0;
+    public int items;
     public int hp;    
     public float speed;
     public float jumpForce = 4000;
@@ -17,6 +17,7 @@ public class Player : MonoBehaviour {
     private Rigidbody2D body;
 
     void Start () {
+        items = 0;
         hp = Config.game.playerHp;        
         speed = Config.game.playerSpeed;
 
@@ -54,5 +55,9 @@ public class Player : MonoBehaviour {
     public void stopJumping() {        
         onAir = false;
         jumped = false;
+    }
+
+    public void addItem() {
+        items++;
     }
 }
