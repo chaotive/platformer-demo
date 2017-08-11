@@ -3,11 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Config : MonoBehaviour {
+
     public int playerHp = 1;
     public float playerSpeed = 1;
+
     public float enemySpeed = 1;
     public int damageAmount = 1;
 
+    public int collectablesLengthMin = 10;
+    public int collectablesLengthMax = 890;
+    public int collectablesHeightMin = 0;
+    public int collectablesHeightMax = 4;
+    public int collectablesChance = 6;
+    
     public static Config game;
     public static Player player;
 

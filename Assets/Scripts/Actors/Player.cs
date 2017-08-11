@@ -8,7 +8,7 @@ public class Player : MonoBehaviour {
     public float speed;
     public float jumpForce = 4000;
 
-    private Vector2 maxVelocity = new Vector2(10f, 8.5f);
+    private Vector2 maxVelocity = new Vector2(8.5f, 8.5f);
 
     private bool keyPressed;
     private bool jumped;    
@@ -49,7 +49,7 @@ public class Player : MonoBehaviour {
             onAir = true;            
         }
         
-        print(body.velocity + " goingUp:" + goingUp + " onAir:" + onAir + " jumped:" + jumped);
+        //print(body.velocity + " goingUp:" + goingUp + " onAir:" + onAir + " jumped:" + jumped);
     }
 
     public void stopJumping() {        
