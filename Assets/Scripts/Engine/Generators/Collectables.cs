@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollectableGenerator : MonoBehaviour {
-
-    public Transform collectable;
-    public Transform parent;
+public class Collectables : Generator {
 
     void Start()
     {        
@@ -15,7 +12,7 @@ public class CollectableGenerator : MonoBehaviour {
             if (option == 0)
             {
                 var y = Random.Range(Config.game.collectablesHeightMin, Config.game.collectablesHeightMax);
-                Instantiate(collectable, new Vector3(x, y, 0), Quaternion.identity, parent);
+                Instantiate(generable, new Vector3(x, y, 0), Quaternion.identity, transform);
             }
         }        
     }
