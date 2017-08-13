@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MovingEnemies : Generator {
 
-    private int period = 5;
+    public int period = 5;
     private float currentTime = 0;
 
     void Update()

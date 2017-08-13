@@ -5,9 +5,9 @@ using UnityEngine;
 public class Config : MonoBehaviour {
 
     public int playerHp = 1;
-    public float playerSpeed = 1;
+    public float playerSpeed = 8.5f;
 
-    public float enemySpeed = 1;
+    public float enemySpeed = 8.5f;
     public int damageAmount = 1;
 
     public int collectablesLengthMin = 10;

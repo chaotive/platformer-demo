@@ -2,62 +2,89 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour {
-    public int items;
-    public int hp;    
-    public float speed;
+public class Player : MonoBehaviour
+{
+    public int items = 0;
+    public int hp;
+    public float accelerationForce = 800;
     public float jumpForce = 4000;
 
-    private Vector2 maxVelocity = new Vector2(8.5f, 8.5f);
+    private Vector2 maxVelocity;
 
-    private bool keyPressed;
-    private bool jumped;    
-    private bool onAir;
+    private bool keyPressed = false;
+    private bool jumped = false;
+    private bool onAir = false;
 
     private Rigidbody2D body;
 
-    void Start () {
-        items = 0;
-        hp = Config.game.playerHp;        
-        speed = Config.game.playerSpeed;
-
+    void Start()
+    {
+        hp = Config.game.playerHp;
+        maxVelocity = new Vector2(Config.game.playerSpeed, 8.5f);
         body = GetComponent<Rigidbody2D>();
-        keyPressed = false;
-
-        jumped = false;        
-        onAir = false;        
     }
 
     void Update()
     {
-        if (Input.GetKey("space")) keyPressed = true;        
-        else keyPressed = false;        
+        if (Input.GetKey("space")) keyPressed = true;
+        else keyPressed = false;
     }
 
     void FixedUpdate()
     {
-        if (body.velocity.x < maxVelocity.x) body.AddForce(Vector2.right * speed * Time.deltaTime);
-        
+        if (body.velocity.x < maxVelocity.x) body.AddForce(Vector2.right * accelerationForce * Time.deltaTime);
+
         bool goingUp = false;
         if (keyPressed && body.velocity.y < maxVelocity.y && !jumped) goingUp = true;
         else if (onAir) jumped = true;
-        
+
         if (goingUp)
         {
-            body.AddForce(Vector2.right * speed * Time.deltaTime);
+            body.AddForce(Vector2.right * accelerationForce * Time.deltaTime);
             body.AddForce(Vector2.up * jumpForce * Time.deltaTime);
-            onAir = true;            
+            onAir = true;
         }
-        
+
         //print(body.velocity + " goingUp:" + goingUp + " onAir:" + onAir + " jumped:" + jumped);
     }
 
-    public void stopJumping() {        
+    public void stopJumping()
+    {
         onAir = false;
         jumped = false;
     }
 
-    public void addItem() {
+    public void itemsUp()
+    {
         items++;
+    }
+
+    public void hpDown()
+    {
+        hp--;
+    }
+
+    public void OnCollisionEnter2D(Collision2D other)
+    {
+        switch (other.gameObject.tag)
+        {
+            case "Ground": stopJumping(); break;
+            case "StageEnd": print("This is the end of the stage"); break;
+        }
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        switch (other.tag)
+        {
+            case "Enemy":
+                hpDown();
+                Destroy(other.gameObject);
+                break;
+            case "Collectable":
+                itemsUp();
+                Destroy(other.gameObject);
+                break;
+        }
     }
 }
