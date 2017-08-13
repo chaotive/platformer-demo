@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
 
     public void hpDown()
     {
-        hp--;
+        hp--;        
     }
 
     public void OnCollisionEnter2D(Collision2D other)

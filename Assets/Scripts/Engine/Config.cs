@@ -23,7 +23,7 @@ public class Config : MonoBehaviour {
 
 	void Start () {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        game = this;
+        game = this;        
 	}
 	
 }
