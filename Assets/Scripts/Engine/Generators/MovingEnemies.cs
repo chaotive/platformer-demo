@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class MovingEnemies : Generator {
 
+    public Transform referencePositioner;
     public int period = 5;
-    private float currentTime = 0;
 
+    private Vector3 basePosition;
+    private float currentTime = 0;
+    
     void Update()
     {
         currentTime -= Time.deltaTime;
-
+        
         if (currentTime <= 0) {
-            Instantiate(generable, transform.position, Quaternion.identity, transform);
+            if (referencePositioner == null) basePosition = Vector3.zero;
+            else basePosition = referencePositioner.position;
+            Instantiate(generable, basePosition + transform.position, Quaternion.identity, transform);
             currentTime = period;
         }
 

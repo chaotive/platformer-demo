@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class Config : MonoBehaviour {
 
-    public int playerHp = 1;
+    public int playerHp = 3;
     public float playerSpeed = 8.5f;
 
-    public float enemySpeed = 8.5f;
+    public float enemySpeed = 3f;
     public int damageAmount = 1;
 
-    public int collectablesLengthMin = 10;
-    public int collectablesLengthMax = 890;
-    public int collectablesHeightMin = 0;
-    public int collectablesHeightMax = 4;
-    public int collectablesChance = 6;
-    
+    public int stageLengthMin = 10;
+    public int stageLengthMax = 890;
+    public int stageHeightMin = 0;
+    public int stageHeightMax = 4;
+
+    public int collectablesChance = 4;
+    public int fixedEnemiesChance = 12;
+
     public static Config game;
     public static Player player;
 

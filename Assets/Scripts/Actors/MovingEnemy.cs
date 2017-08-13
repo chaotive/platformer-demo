@@ -5,10 +5,11 @@ using UnityEngine;
 public class MovingEnemy : Enemy {    
     private Vector2 maxVelocity;
     private float accelerationForce = 800;
-    
-    new void Start()
+    private Rigidbody2D body;
+
+    void Start()
     {
-        base.Start();
+        body = GetComponent<Rigidbody2D>();
         maxVelocity = new Vector2(Config.game.enemySpeed * -1, 8.5f);        
     }
 
