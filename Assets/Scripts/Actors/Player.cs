@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
 
     private Vector2 maxVelocity;
 
-    private bool keyPressed = false;
+    private bool inputPressed = false;
     private bool jumped = false;
     private bool onAir = false;
 
@@ -26,16 +26,30 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey("space")) keyPressed = true;
-        else keyPressed = false;
+        if (Input.GetKey("space") || checkTouch()) inputPressed = true;
+        else inputPressed = false;
     }
 
+    bool checkTouch() {
+        var touched = false;
+        for (int i = 0; i < Input.touchCount; ++i)
+        {
+            if (Input.GetTouch(i).phase == TouchPhase.Began || Input.GetTouch(i).phase == TouchPhase.Moved || Input.GetTouch(i).phase == TouchPhase.Stationary)
+            {
+                touched = true;
+                print("Touched! :)");
+                break;
+            }
+        }
+        return touched;
+    }
+    
     void FixedUpdate()
     {
         if (body.velocity.x < maxVelocity.x) body.AddForce(Vector2.right * accelerationForce * Time.deltaTime);
 
         bool goingUp = false;
-        if (keyPressed && body.velocity.y < maxVelocity.y && !jumped) goingUp = true;
+        if (inputPressed && body.velocity.y < maxVelocity.y && !jumped) goingUp = true;
         else if (onAir) jumped = true;
 
         if (goingUp)
