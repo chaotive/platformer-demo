@@ -9,6 +9,8 @@ public class FixedEnemy : MonoBehaviour {
     private Animator animator;
     private float arrowDelay = 0.4f;
 
+    //TODO Make fixed enemies to shoot constantly
+
     private void Start()
     {        
         animator = GetComponent<Animator>();

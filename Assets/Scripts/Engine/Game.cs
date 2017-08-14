@@ -48,3 +48,7 @@ public class Game : MonoBehaviour {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);        
     }
 }
+
+//TODO Remeasure game duration
+//TODO Add Title Screen
+//TODO Stabilize game
