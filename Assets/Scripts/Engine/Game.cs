@@ -30,13 +30,13 @@ public class Game : MonoBehaviour {
 
     public void over() {
         state = GameState.GameOver;
-        print("Game Over!");
+        //print("Game Over!");
         overUi.SetActive(true);
     }
 
     public void complete() {
         state = GameState.Completed;
-        print("Game completed!");
+        //print("Game completed!");
         completedUi.SetActive(true);
     }
 
