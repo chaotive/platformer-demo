@@ -13,7 +13,7 @@ public class FixedEnemyArrow : MonoBehaviour {
     }
 
 	void Update () {
-        if (Config.game.isPlaying())
+        if (Game.isPlaying())
         {
             transform.position += velocity * Time.deltaTime;
             velocity += acceleration * Time.deltaTime;

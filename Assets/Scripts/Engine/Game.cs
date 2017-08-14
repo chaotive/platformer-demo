@@ -4,12 +4,17 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Game : MonoBehaviour {
+public class Game : MonoBehaviour
+{
     public Text hp;
     public Text items;
 
     public GameObject completedUi;
     public GameObject overUi;
+
+    public static Config config;
+    public static Player player;
+    public static Game instance;
 
     private GameState state;
 
@@ -21,33 +26,41 @@ public class Game : MonoBehaviour {
     void Start()
     {
         state = GameState.Playing;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        config = GameObject.FindGameObjectWithTag("GameConfig").GetComponent<Config>();
+        instance = this;
     }
 
-    void Update () {        
-        hp.text = "HP: " + Config.player.hp.ToString();        
-        items.text = "Items: " + Config.player.items.ToString();        
+    void Update()
+    {
+        hp.text = "HP: " + Game.player.hp.ToString();
+        items.text = "Items: " + Game.player.items.ToString();
     }
 
-    public void over() {
-        state = GameState.GameOver;
+    static public void over()
+    {
+        instance.state = GameState.GameOver;
         //print("Game Over!");
-        overUi.SetActive(true);
+        instance.overUi.SetActive(true);
     }
 
-    public void complete() {
-        state = GameState.Completed;
+    static public void complete()
+    {
+        instance.state = GameState.Completed;
         //print("Game completed!");
-        completedUi.SetActive(true);
+        instance.completedUi.SetActive(true);
     }
 
-    public bool isPlaying() {
-        return state == GameState.Playing;
+    static public bool isPlaying()
+    {
+        return instance.state == GameState.Playing;
     }
 
-    public void restart() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);        
+    public void restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
 }
-
 //TODO Remeasure game duration
 //TODO Stabilize game

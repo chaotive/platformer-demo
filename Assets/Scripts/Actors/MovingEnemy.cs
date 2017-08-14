@@ -10,12 +10,12 @@ public class MovingEnemy : MonoBehaviour {
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
-        maxVelocity = new Vector2(Config.settings.enemySpeed * -1, 8.5f);        
+        maxVelocity = new Vector2(Game.config.enemySpeed * -1, 8.5f);        
     }
 
     void FixedUpdate()
     {
-        if (Config.game.isPlaying())
+        if (Game.isPlaying())
         {
             if (body.velocity.x > maxVelocity.x) body.AddForce(Vector2.left * accelerationForce * Time.deltaTime);
             //print("Moving enemy: " + body.velocity);

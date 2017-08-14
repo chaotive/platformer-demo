@@ -11,7 +11,7 @@ public class MovingEnemies : Generator {
 
     void Update()
     {
-        if (Config.game.isPlaying())
+        if (Game.isPlaying())
         {
             currentTime -= Time.deltaTime;
 

@@ -6,12 +6,12 @@ public class Collectables : Generator {
 
     void Start()
     {        
-        for (int x = Config.settings.stageLengthMin; x < Config.settings.stageLengthMax; x++)
+        for (int x = Game.config.stageLengthMin; x < Game.config.stageLengthMax; x++)
         {            
-            var option = Random.Range(0, Config.settings.collectablesChance);            
+            var option = Random.Range(0, Game.config.collectablesChance);            
             if (option == 0)
             {
-                var y = Random.Range(Config.settings.stageHeightMin, Config.settings.stageHeightMax + 1);
+                var y = Random.Range(Game.config.stageHeightMin, Game.config.stageHeightMax + 1);
                 Instantiate(generable, new Vector3(x, y, 0), Quaternion.identity, transform);
             }
         }        

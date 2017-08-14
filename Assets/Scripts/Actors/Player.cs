@@ -19,14 +19,14 @@ public class Player : MonoBehaviour
 
     void Start()
     {        
-        hp = Config.settings.playerHp;
-        maxVelocity = new Vector2(Config.settings.playerSpeed, 8.5f);
+        hp = Game.config.playerHp;
+        maxVelocity = new Vector2(Game.config.playerSpeed, 8.5f);
         body = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        if (Config.game.isPlaying())
+        if (Game.isPlaying())
         {
             if (Input.GetKey("space") || checkTouch()) inputPressed = true;
             else inputPressed = false;
@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
     
     void FixedUpdate()
     {
-        if (Config.game.isPlaying())
+        if (Game.isPlaying())
         {
             if (body.velocity.x < maxVelocity.x) body.AddForce(Vector2.right * accelerationForce * Time.deltaTime);
 
@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
     public void hpDown()
     {
         hp--;
-        if (hp <= 0) Config.game.over();
+        if (hp <= 0) Game.over();
     }
 
     public void OnCollisionEnter2D(Collision2D other)
@@ -91,7 +91,7 @@ public class Player : MonoBehaviour
         switch (other.gameObject.tag)
         {
             case "Ground": stopJumping(); break;
-            case "StageEnd": Config.game.complete(); break;
+            case "StageEnd": Game.complete(); break;
         }
     }
 

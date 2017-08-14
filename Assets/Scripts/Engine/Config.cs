@@ -4,28 +4,39 @@ using UnityEngine;
 
 public class Config : MonoBehaviour {
 
-    public int playerHp = 3;
-    public float playerSpeed = 8.5f;
+    public int playerHp;
+    public float playerSpeed;
 
-    public float enemySpeed = 3f;
-    public int damageAmount = 1;
+    public float enemySpeed;
+    public int damageAmount;
 
-    public int stageLengthMin = 10;
-    public int stageLengthMax = 890;
-    public int stageHeightMin = 0;
-    public int stageHeightMax = 3;
+    public int stageLengthMin;
+    public int stageLengthMax;
+    public int stageHeightMin;
+    public int stageHeightMax;
 
-    public int collectablesChance = 4;
-    public int fixedEnemiesChance = 12;
+    public int collectablesChance;
+    public int fixedEnemiesChance;
+    
+    private void defaultValues() {
+        playerHp = 3;
+        playerSpeed = 6f;
 
-    public static Config settings;
-    public static Player player;
-    public static Game game;
+        enemySpeed = 3f;
+        damageAmount = 1;
 
-	void Start () {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        game = GameObject.FindGameObjectWithTag("GameController").GetComponent<Game>();
-        settings = this;        
-	}
-	
+        stageLengthMin = 10;
+        stageLengthMax = 890;
+        stageHeightMin = 0;
+        stageHeightMax = 3;
+
+        collectablesChance = 4;
+        fixedEnemiesChance = 12;
+    }
+
+    public void Reset()
+    {
+        print("Resetting Config...");
+        defaultValues();
+    }
 }

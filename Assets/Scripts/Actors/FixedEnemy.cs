@@ -28,7 +28,7 @@ public class FixedEnemy : MonoBehaviour {
     IEnumerator makeArrow(float delay, bool right = false)
     {
         yield return new WaitForSeconds(delay);
-        var go = Instantiate(arrowPrefab, hand.position, Quaternion.identity) as Transform;        
+        Instantiate(arrowPrefab, hand.position, Quaternion.identity);        
     }
 
     public void shoot() {        
@@ -39,7 +39,7 @@ public class FixedEnemy : MonoBehaviour {
 
     void Update()
     {
-        if (Config.game.isPlaying())
+        if (Game.isPlaying())
         {
             currentTime -= Time.deltaTime;
             if (currentTime <= 0)
