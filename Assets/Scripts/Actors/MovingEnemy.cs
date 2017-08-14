@@ -10,7 +10,7 @@ public class MovingEnemy : MonoBehaviour {
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
-        maxVelocity = new Vector2(Game.config.enemySpeed * -1, 8.5f);        
+        maxVelocity = new Vector2(Game.config.movingEnemiesSpeed * -1, 8.5f);        
     }
 
     void FixedUpdate()

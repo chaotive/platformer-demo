@@ -7,14 +7,12 @@ namespace UnityStandardAssets.Utility
         // The target we are following
         [SerializeField]
         private Transform target;
-        // The distance in the x-z plane to the target
-        [SerializeField]
+        // The distance in the x-z plane to the target        
         private float distance = 10.0f;
         // the height we want the camera to be above the target
         [SerializeField]
         private float height = 5.0f;
-
-        [SerializeField]
+        
         private float rotationDamping;
         [SerializeField]
         private float heightDamping;
@@ -54,10 +52,7 @@ namespace UnityStandardAssets.Utility
             transform.position -= currentRotation * Vector3.forward * distance;
 
             // Set the height of the camera
-            transform.position = new Vector3(transform.position.x + originalPosition.x, currentHeight, transform.position.z);
-
-            // Always look at the target
-            //transform.LookAt(target);
+            transform.position = new Vector3(transform.position.x + originalPosition.x, currentHeight, transform.position.z);            
         }
     }
 }

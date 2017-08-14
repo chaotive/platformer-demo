@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [HideInInspector]
     public int items = 0;
+    [HideInInspector]
     public int hp = 1;
-    public float accelerationForce = 800;
-    public float jumpForce = 4000;
+
+    private float accelerationForce = 800;
+    private float jumpForce = 4000;
 
     private Vector2 maxVelocity;
 

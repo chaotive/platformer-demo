@@ -62,5 +62,3 @@ public class Game : MonoBehaviour
     }
 
 }
-//TODO Remeasure game duration
-//TODO Stabilize game
