@@ -11,7 +11,7 @@ public class Collectables : Generator {
             var option = Random.Range(0, Config.settings.collectablesChance);            
             if (option == 0)
             {
-                var y = Random.Range(Config.settings.stageHeightMin, Config.settings.stageHeightMax);
+                var y = Random.Range(Config.settings.stageHeightMin, Config.settings.stageHeightMax + 1);
                 Instantiate(generable, new Vector3(x, y, 0), Quaternion.identity, transform);
             }
         }        

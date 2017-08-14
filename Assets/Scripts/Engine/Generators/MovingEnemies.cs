@@ -5,11 +5,10 @@ using UnityEngine;
 public class MovingEnemies : Generator {
 
     public Transform referencePositioner;
-    public int period = 5;
-
-    private Vector3 basePosition;
+    public int period = 5;    
     private float currentTime = 0;
-    
+    private Vector3 basePosition;
+
     void Update()
     {
         if (Config.game.isPlaying())

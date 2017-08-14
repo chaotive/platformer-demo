@@ -13,7 +13,7 @@ public class Config : MonoBehaviour {
     public int stageLengthMin = 10;
     public int stageLengthMax = 890;
     public int stageHeightMin = 0;
-    public int stageHeightMax = 4;
+    public int stageHeightMax = 3;
 
     public int collectablesChance = 4;
     public int fixedEnemiesChance = 12;

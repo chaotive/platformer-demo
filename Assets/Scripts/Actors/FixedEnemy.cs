@@ -9,14 +9,13 @@ public class FixedEnemy : MonoBehaviour {
     private Animator animator;
     private float arrowDelay = 0.4f;
 
-    //TODO Make fixed enemies to shoot constantly
+    public int shootPeriod = 5;
+    private float currentTime = 0;
 
     private void Start()
     {        
-        animator = GetComponent<Animator>();
-            
-        flip();
-        shoot();
+        animator = GetComponent<Animator>();            
+        flip();        
     }
 
     public void flip()
@@ -33,10 +32,22 @@ public class FixedEnemy : MonoBehaviour {
     }
 
     public void shoot() {        
-        if (Random.Range(0f, 1.0f) > 0.5f)
-            animator.SetTrigger("attack");
-        else
-            animator.SetTrigger("special");
+        if (Random.Range(0f, 1.0f) > 0.5f) animator.SetTrigger("attack");
+        else animator.SetTrigger("special");
         StartCoroutine(makeArrow(arrowDelay));        
     }
+
+    void Update()
+    {
+        if (Config.game.isPlaying())
+        {
+            currentTime -= Time.deltaTime;
+            if (currentTime <= 0)
+            {
+                shoot();
+                currentTime = shootPeriod;
+            }
+        }
+    }
+
 }

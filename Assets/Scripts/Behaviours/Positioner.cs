@@ -5,7 +5,6 @@ using UnityEngine;
 public class Positioner : MonoBehaviour {
 
     public Transform followed;
-    //public bool fixedY = false;
     public float yIntensity = 1f;
     public float xIntensity = 1f;
 
