@@ -50,5 +50,4 @@ public class Game : MonoBehaviour {
 }
 
 //TODO Remeasure game duration
-//TODO Add Title Screen
 //TODO Stabilize game
