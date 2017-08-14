@@ -12,13 +12,17 @@ public class MovingEnemies : Generator {
     
     void Update()
     {
-        currentTime -= Time.deltaTime;
-        
-        if (currentTime <= 0) {
-            if (referencePositioner == null) basePosition = Vector3.zero;
-            else basePosition = referencePositioner.position;
-            Instantiate(generable, basePosition + transform.position, Quaternion.identity, transform);
-            currentTime = period;
+        if (Config.game.isPlaying())
+        {
+            currentTime -= Time.deltaTime;
+
+            if (currentTime <= 0)
+            {
+                if (referencePositioner == null) basePosition = Vector3.zero;
+                else basePosition = referencePositioner.position;
+                Instantiate(generable, basePosition + transform.position, Quaternion.identity, transform);
+                currentTime = period;
+            }
         }
 
     }

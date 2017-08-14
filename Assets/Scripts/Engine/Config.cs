@@ -18,12 +18,14 @@ public class Config : MonoBehaviour {
     public int collectablesChance = 4;
     public int fixedEnemiesChance = 12;
 
-    public static Config game;
+    public static Config settings;
     public static Player player;
+    public static Game game;
 
 	void Start () {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        game = this;        
+        game = GameObject.FindGameObjectWithTag("GameController").GetComponent<Game>();
+        settings = this;        
 	}
 	
 }

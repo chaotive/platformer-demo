@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovingEnemy : Enemy {    
+public class MovingEnemy : MonoBehaviour {    
     private Vector2 maxVelocity;
     private float accelerationForce = 800;
     private Rigidbody2D body;
@@ -10,13 +10,16 @@ public class MovingEnemy : Enemy {
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
-        maxVelocity = new Vector2(Config.game.enemySpeed * -1, 8.5f);        
+        maxVelocity = new Vector2(Config.settings.enemySpeed * -1, 8.5f);        
     }
 
     void FixedUpdate()
     {
-        if (body.velocity.x > maxVelocity.x) body.AddForce(Vector2.left * accelerationForce * Time.deltaTime);        
-        //print("Moving enemy: " + body.velocity);
+        if (Config.game.isPlaying())
+        {
+            if (body.velocity.x > maxVelocity.x) body.AddForce(Vector2.left * accelerationForce * Time.deltaTime);
+            //print("Moving enemy: " + body.velocity);
+        } else body.velocity = new Vector2(0, body.velocity.y);
     }
 
     public void OnTriggerEnter2D(Collider2D other)

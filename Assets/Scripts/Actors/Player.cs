@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public int items = 0;
-    public int hp;
+    public int hp = 1;
     public float accelerationForce = 800;
     public float jumpForce = 4000;
 
@@ -18,16 +18,19 @@ public class Player : MonoBehaviour
     private Rigidbody2D body;
 
     void Start()
-    {
-        hp = Config.game.playerHp;
-        maxVelocity = new Vector2(Config.game.playerSpeed, 8.5f);
+    {        
+        hp = Config.settings.playerHp;
+        maxVelocity = new Vector2(Config.settings.playerSpeed, 8.5f);
         body = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        if (Input.GetKey("space") || checkTouch()) inputPressed = true;
-        else inputPressed = false;
+        if (Config.game.isPlaying())
+        {
+            if (Input.GetKey("space") || checkTouch()) inputPressed = true;
+            else inputPressed = false;
+        }
     }
 
     bool checkTouch() {
@@ -46,20 +49,24 @@ public class Player : MonoBehaviour
     
     void FixedUpdate()
     {
-        if (body.velocity.x < maxVelocity.x) body.AddForce(Vector2.right * accelerationForce * Time.deltaTime);
-
-        bool goingUp = false;
-        if (inputPressed && body.velocity.y < maxVelocity.y && !jumped) goingUp = true;
-        else if (onAir) jumped = true;
-
-        if (goingUp)
+        if (Config.game.isPlaying())
         {
-            body.AddForce(Vector2.right * accelerationForce * Time.deltaTime);
-            body.AddForce(Vector2.up * jumpForce * Time.deltaTime);
-            onAir = true;
-        }
+            if (body.velocity.x < maxVelocity.x) body.AddForce(Vector2.right * accelerationForce * Time.deltaTime);
 
-        //print(body.velocity + " goingUp:" + goingUp + " onAir:" + onAir + " jumped:" + jumped);
+            bool goingUp = false;
+            if (inputPressed && body.velocity.y < maxVelocity.y && !jumped) goingUp = true;
+            else if (onAir) jumped = true;
+
+            if (goingUp)
+            {
+                body.AddForce(Vector2.right * accelerationForce * Time.deltaTime);
+                body.AddForce(Vector2.up * jumpForce * Time.deltaTime);
+                onAir = true;
+            }
+
+            //print(body.velocity + " goingUp:" + goingUp + " onAir:" + onAir + " jumped:" + jumped);
+        }
+        else body.velocity = new Vector2(0, body.velocity.y);
     }
 
     public void stopJumping()
@@ -75,7 +82,8 @@ public class Player : MonoBehaviour
 
     public void hpDown()
     {
-        hp--;        
+        hp--;
+        if (hp <= 0) Config.game.over();
     }
 
     public void OnCollisionEnter2D(Collision2D other)
@@ -83,7 +91,7 @@ public class Player : MonoBehaviour
         switch (other.gameObject.tag)
         {
             case "Ground": stopJumping(); break;
-            case "StageEnd": print("This is the end of the stage"); break;
+            case "StageEnd": Config.game.complete(); break;
         }
     }
 

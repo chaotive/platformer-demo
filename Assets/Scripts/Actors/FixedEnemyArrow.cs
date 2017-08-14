@@ -12,12 +12,14 @@ public class FixedEnemyArrow : MonoBehaviour {
 	}
 
 	void Update () {
-	
-		transform.position += velocity * Time.deltaTime;
-		velocity += acceleration * Time.deltaTime;
-        
-       transform.rotation = Quaternion.LookRotation(velocity, new Vector3(0,0,-1));
-	}
+        if (Config.game.isPlaying())
+        {
+            transform.position += velocity * Time.deltaTime;
+            velocity += acceleration * Time.deltaTime;
+
+            transform.rotation = Quaternion.LookRotation(velocity, new Vector3(0, 0, -1));
+        }
+    }
 
     public void OnTriggerEnter2D(Collider2D other)
     {

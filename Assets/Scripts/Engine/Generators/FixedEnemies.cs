@@ -7,12 +7,12 @@ public class FixedEnemies : Generator
 
     void Start()
     {
-        for (int x = Config.game.stageLengthMin; x < Config.game.stageLengthMax; x++)
+        for (int x = Config.settings.stageLengthMin; x < Config.settings.stageLengthMax; x++)
         {
-            var option = Random.Range(0, Config.game.fixedEnemiesChance);
+            var option = Random.Range(0, Config.settings.fixedEnemiesChance);
             if (option == 0)
             {
-                var y = Random.Range(Config.game.stageHeightMin + 1, Config.game.stageHeightMax);
+                var y = Random.Range(Config.settings.stageHeightMin + 1, Config.settings.stageHeightMax);
                 Instantiate(generable, new Vector3(x, y, 0), Quaternion.identity, transform);
             }
         }

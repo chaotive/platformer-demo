@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FixedEnemy : Enemy {
+public class FixedEnemy : MonoBehaviour {
     public Transform arrowPrefab;
     public Transform hand;
     
