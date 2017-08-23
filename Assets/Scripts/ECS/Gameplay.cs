@@ -35,6 +35,7 @@ public class Gameplay : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
+        /* Player */
         switch (other.tag)
         {
             case "Enemy":
@@ -45,6 +46,12 @@ public class Gameplay : MonoBehaviour
                 itemsUp();
                 Destroy(other.gameObject);
                 break;
+        }
+
+        /* MovingEnemy */
+        switch (other.tag)
+        {
+            case "Boundary": Destroy(gameObject); break;
         }
     }
 }
