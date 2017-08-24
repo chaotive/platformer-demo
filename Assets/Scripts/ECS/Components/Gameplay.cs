@@ -56,13 +56,16 @@ public class Gameplay : MonoBehaviour
     }
 }
 
-//TODO: Abstracts
-//TODO: Abstracts
-//TODO: Abstracts
-//TODO: Abstracts
-//TODO: Abstracts
-//TODO: Abstracts
-//TODO: Abstracts
-//TODO: Abstracts
-//TODO: Abstracts
-//TODO: Abstracts
+//TODO: Actors/FixedEnemy
+//TODO: Actors/FixedEnemyArrow
+//TODO: Behaviours/Mover
+//TODO: Behaviours/Positioner
+//TODO: Cameras/GameCamera
+//TODO: Engine/Config
+//TODO: Engine/Game
+
+//Abstracts/Generator
+//Engine/Generators/Collectables
+//Engine/Generators/FixedEnemies
+//Engine/Generators/MovingEnemies
+//Engine/TitleScreen
