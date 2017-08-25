@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
-public class Positioner : MonoBehaviour {
+public class Follower : MonoBehaviour {
 
     public Transform followed;
     public float yIntensity = 1f;
@@ -23,4 +22,3 @@ public class Positioner : MonoBehaviour {
     }
     
 }
-*/

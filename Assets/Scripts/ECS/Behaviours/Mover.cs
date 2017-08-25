@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
 public class Mover : MonoBehaviour {
 
     public float amount = 0.1f;
@@ -30,5 +29,4 @@ public class Mover : MonoBehaviour {
         transform.position = new Vector2(x, y);
 	}
 }
-*/
  

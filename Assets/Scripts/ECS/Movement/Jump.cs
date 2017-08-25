@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Jump : MonoBehaviour
-{        
-    private float jumpForce = 4000;
+{
+    public bool goingRight = true;
+
+    private float hAccelerationForce = 800;
+    private float vAccelerationForce = 4000;
 
     private Vector2 maxVelocity;
     
@@ -28,8 +31,10 @@ public class Jump : MonoBehaviour
             else if (onAir) jumped = true;
 
             if (goingUp)
-            {                
-                body.AddForce(Vector2.up * jumpForce * Time.deltaTime);
+            {
+                if (goingRight) body.AddForce(Vector2.right * hAccelerationForce * Time.deltaTime);
+                else body.AddForce(Vector2.left * hAccelerationForce * Time.deltaTime);
+                body.AddForce(Vector2.up * vAccelerationForce * Time.deltaTime);
                 onAir = true;
             }
 
