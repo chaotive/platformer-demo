@@ -5,6 +5,7 @@ using UnityEngine;
 public class Walk : MonoBehaviour
 {
     public bool goingRight = true;
+    public float speed = 6f;
          
     private float hAccelerationForce = 800;    
     private Vector2 maxVelocity;
@@ -15,16 +16,18 @@ public class Walk : MonoBehaviour
     {
         var direction = 1;
         if (!goingRight) direction = -1;
-        maxVelocity = new Vector2(Game.config.playerSpeed * direction, 8.5f);
         body = GetComponent<Rigidbody2D>();
-        
+        maxVelocity = new Vector2(speed * direction, 8.5f);
+
+        //Player
+        //maxVelocity = new Vector2(Game.config.playerSpeed * direction, 8.5f);
         // Moving Enemy
         //maxVelocity = new Vector2(Game.config.movingEnemiesSpeed * -1, 8.5f);
     }
     
     void FixedUpdate()
     {
-        if (Game.isPlaying())
+        if (GameController.isPlaying())
         {
             
             if (goingRight && body.velocity.x < maxVelocity.x) body.AddForce(Vector2.right * hAccelerationForce * Time.deltaTime);

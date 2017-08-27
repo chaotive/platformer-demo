@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dynamic : Generator {
+public class Dynamic : Spawner {
 
     public Transform referencePositioner;
     public int period = 5;    
@@ -11,7 +11,7 @@ public class Dynamic : Generator {
 
     void Update()
     {
-        if (Game.isPlaying())
+        if (GameController.isPlaying())
         {
             currentTime -= Time.deltaTime;
 
@@ -19,7 +19,7 @@ public class Dynamic : Generator {
             {
                 if (referencePositioner == null) basePosition = Vector3.zero;
                 else basePosition = referencePositioner.position;
-                Instantiate(generable, basePosition + transform.position, Quaternion.identity, transform);
+                Instantiate(spawnable, basePosition + transform.position, Quaternion.identity, transform);
                 currentTime = period;
             }
         }

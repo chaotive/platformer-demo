@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class GameInput : MonoBehaviour
 {    
-    private bool inputPressed = false;
+    public static bool inputPressed = false;
     
     void Update()
     {
         /* Input */
-        if (Game.isPlaying())
+        if (GameController.isPlaying())
         {
             if (Input.GetKey("space") || checkTouch()) inputPressed = true;
             else inputPressed = false;

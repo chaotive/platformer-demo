@@ -4,7 +4,7 @@ using UnityEngine;
 public class ConfigMenu : MonoBehaviour
 {
     static GameObject go;
-    static string goName = "engine/config";
+    static string goTag = "GameController";
 
     [MenuItem("Savage Robot Run/Edit Config")]
     static void editConfig()
@@ -14,8 +14,8 @@ public class ConfigMenu : MonoBehaviour
 
     [MenuItem("Savage Robot Run/Edit Config", true)]
     static bool validateEditConfig()
-    {        
-        go = GameObject.Find(goName);
+    {
+        go = GameObject.FindGameObjectWithTag(goTag);
         return go != null;
     }
 
@@ -28,7 +28,7 @@ public class ConfigMenu : MonoBehaviour
     [MenuItem("Savage Robot Run/Reset Config", true)]
     static bool validateLoadConfig()
     {
-        go = GameObject.Find(goName);
+        go = GameObject.FindGameObjectWithTag(goTag);
         return go != null && go.GetComponent<Config>() != null;
     }
     

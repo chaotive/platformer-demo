@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-abstract public class Generator : MonoBehaviour {
+abstract public class Spawner : MonoBehaviour {
     
-    public Transform generable;
+    public Transform spawnable;
     
 }

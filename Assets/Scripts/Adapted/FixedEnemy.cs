@@ -39,7 +39,7 @@ public class FixedEnemy : MonoBehaviour {
 
     void Update()
     {
-        if (Game.isPlaying())
+        if (GameController.isPlaying())
         {
             currentTime -= Time.deltaTime;
             if (currentTime <= 0)

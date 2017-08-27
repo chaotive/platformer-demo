@@ -4,19 +4,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameController : MonoBehaviour
-{
-    public Text hpUi;
-    public Text itemsUi;
+public abstract class GameController : MonoBehaviour
+{    
     public GameObject completedUi;
-    public GameObject overUi;
-
-    public static Config config;    
+    public GameObject overUi;    
     public static GameController instance;
 
     private GameState state;    
-    private int items = 0;    
-    private int hp = 1;
     
     public enum GameState
     {
@@ -27,36 +21,16 @@ public class GameController : MonoBehaviour
         instance = this;
     }
 
-    void Start()
+    protected void Start()
     {
-        state = GameState.Playing;        
-        config = GameObject.FindGameObjectWithTag("GameConfig").GetComponent<Config>();
-
-        hp = Game.config.playerHp;
+        state = GameState.Playing;                
     }
-    
-    public void itemsUp()
-    {
-        items++;
-    }
-
-    public void hpDown()
-    {
-        hp--;
-        if (hp <= 0) over();
-    }
-    
+        
     public void restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
-    void Update()
-    {
-        hpUi.text = "HP: " + hp.ToString();
-        itemsUi.text = "Items: " + items.ToString();
-    }
-
+    
     static public void over()
     {
         instance.state = GameState.GameOver;
@@ -77,9 +51,3 @@ public class GameController : MonoBehaviour
     }
     
 }
-
-//Tutorials:
-// Game Manager
-// https://unity3d.com/es/learn/tutorials/projects/2d-roguelike-tutorial/writing-game-manager
-// Singleton
-// http://clearcutgames.net/home/?p=437

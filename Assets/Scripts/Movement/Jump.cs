@@ -5,29 +5,25 @@ using UnityEngine;
 public class Jump : MonoBehaviour
 {
     public bool goingRight = true;
+    public float hAccelerationForce = 800;
+    public float vAccelerationForce = 4000;
+    public Vector2 maxVelocity = new Vector2(0, 8.5f);
 
-    private float hAccelerationForce = 800;
-    private float vAccelerationForce = 4000;
-
-    private Vector2 maxVelocity;
-    
     private bool jumped = false;
     private bool onAir = false;
-
     private Rigidbody2D body;
 
     void Start()
-    {        
-        maxVelocity = new Vector2(Game.config.playerSpeed, 8.5f);
+    {                
         body = GetComponent<Rigidbody2D>();
     }
         
     void FixedUpdate()
     {
-        if (Game.isPlaying())
+        if (GameController.isPlaying())
         {            
             bool goingUp = false;
-            if (body.velocity.y < maxVelocity.y && !jumped) goingUp = true;
+            if (GameInput.inputPressed && body.velocity.y < maxVelocity.y && !jumped) goingUp = true;
             else if (onAir) jumped = true;
 
             if (goingUp)

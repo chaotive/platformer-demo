@@ -7,13 +7,13 @@ public class FixedEnemyArrow : MonoBehaviour {
 	public Vector3 acceleration = new Vector3(0.1f, 0.2f, 0);
     
 	void Start () {        
-		Destroy(this.gameObject, 10);        
+		Destroy(gameObject, 10);        
         velocity.x = -velocity.x;        
         acceleration.y -= transform.position.y / 3.5f;        
     }
 
 	void Update () {
-        if (Game.isPlaying())
+        if (GameController.isPlaying())
         {
             transform.position += velocity * Time.deltaTime;
             velocity += acceleration * Time.deltaTime;
