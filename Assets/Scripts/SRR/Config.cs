@@ -39,7 +39,7 @@ public class Config : GameConfig {
         stageLengthMin, stageLengthMax, stageHeightMin, stageHeightMax
     }
 
-    private void defaultValues()
+    protected override void defaultValues()
     {        
         playerHp = 3;
         playerSpeed = 6f;
@@ -55,56 +55,6 @@ public class Config : GameConfig {
         stageLengthMax = 240;
         stageHeightMin = 0;
         stageHeightMax = 3;
-    }
-
-    private void mapSettings()
-    {
-        foreach (var sName in Enum.GetValues(typeof(FloatSettings))) {
-            print(sName.ToString());
-
-            Type t = typeof(Config);
-            PropertyInfo prop = t.GetProperty(sName.ToString());
-            if (null != prop)
-                print(prop.GetValue(this, null));
-
-            var property = GetType().GetProperty(sName.ToString());
-            print(property);
-            if (property != null)
-                print(sName + " " + property.GetValue(this, null));            
-        }
-
-        /*
-        intSettings[IntSettings.PlayerHp] = playerHp;
-        floatSettings[FloatSettings.PlayerSpeed] = playerSpeed;
-
-        floatSettings[FloatSettings.MovingEnemiesSpeed] = movingEnemiesSpeed;
-        intSettings[IntSettings.DamageAmount] = damageAmount;
-
-        intSettings[IntSettings.CollectablesChance] = collectablesChance;
-        intSettings[IntSettings.FixedEnemiesChance] = fixedEnemiesChance;
-        intSettings[IntSettings.FixedEnemiesMinimumDistance] = fixedEnemiesMinimumDistance;
-
-        intSettings[IntSettings.StageLengthMin] = stageLengthMin;
-        intSettings[IntSettings.StageLengthMax] = stageLengthMax;
-        intSettings[IntSettings.StageHeightMin] = stageHeightMin;
-        intSettings[IntSettings.StageHeightMax] = stageHeightMax;
-        */
-
-        printSettings("Config floats' are ", floatSettings);
-        printSettings("Config ints' are ", intSettings);
-        printSettings("Config strings' are ", stringSettings);
-    }
-
-    public void OnValidate()
-    {
-        mapSettings();
-    }
-
-    public void Reset()
-    {
-        print("Resetting Config...");
-        defaultValues();
-        mapSettings();
     }
 
 }
