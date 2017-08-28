@@ -23,7 +23,7 @@ public class SrrController : GameController
     new void Start()
     {
         base.Start();
-        config = GameObject.FindGameObjectWithTag("GameConfig").GetComponent<Config>();
+        config = GameObject.FindGameObjectWithTag("GameController").GetComponent<Config>();
         hp = config.playerHp;
     }
     
@@ -51,3 +51,6 @@ public class SrrController : GameController
 // https://unity3d.com/es/learn/tutorials/projects/2d-roguelike-tutorial/writing-game-manager
 // Singleton
 // http://clearcutgames.net/home/?p=437
+// Settings on Menu
+// https://gamedev.stackexchange.com/questions/74393/how-to-edit-key-value-pairs-like-a-dictionary-in-unitys-inspector
+// Reflection

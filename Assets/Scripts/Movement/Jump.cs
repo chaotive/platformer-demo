@@ -7,15 +7,19 @@ public class Jump : MonoBehaviour
     public bool goingRight = true;
     public float hAccelerationForce = 800;
     public float vAccelerationForce = 4000;
-    public Vector2 maxVelocity = new Vector2(0, 8.5f);
+
+    public float maxVelocity = 8.5f;
+    public Config.FloatSettings maxVelocityMap;    
 
     private bool jumped = false;
     private bool onAir = false;
     private Rigidbody2D body;
-
+    
     void Start()
     {                
         body = GetComponent<Rigidbody2D>();
+        maxVelocity = Config.instance.floatSettings[maxVelocityMap];
+        print("JUMP " + maxVelocity);
     }
         
     void FixedUpdate()
@@ -23,7 +27,7 @@ public class Jump : MonoBehaviour
         if (GameController.isPlaying())
         {            
             bool goingUp = false;
-            if (GameInput.inputPressed && body.velocity.y < maxVelocity.y && !jumped) goingUp = true;
+            if (GameInput.inputPressed && body.velocity.y < maxVelocity && !jumped) goingUp = true;
             else if (onAir) jumped = true;
 
             if (goingUp)
