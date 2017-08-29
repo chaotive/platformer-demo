@@ -27,10 +27,10 @@ public abstract class GameConfig : MonoBehaviour {
     public enum FloatSettings { none }
     public enum IntSettings { none }
     public enum StringSettings { none }
-
-    public Dictionary<Enum, float> floatSettings = new Dictionary<Enum, float>();
-    public Dictionary<Enum, string> stringSettings = new Dictionary<Enum, string>();
-    public Dictionary<Enum, int> intSettings = new Dictionary<Enum, int>();
+    
+    public Dictionary<Enum, float> floatSettings;
+    /*public Dictionary<Enum, string> stringSettings;
+    public Dictionary<Enum, int> intSettings;*/
 
     public static GameConfig instance;
 
@@ -39,31 +39,57 @@ public abstract class GameConfig : MonoBehaviour {
         instance = this;
     }
 
-    protected void printSettings<T>(string title, Dictionary<Enum, T> settings) {
-        print("*** " + title + " ***");
-        foreach (var v in settings) {
-            print(v.Key + " " + v.Value);
+    void OnValidate()
+    {
+        mapSettings();
+    }
+
+    public void Reset()
+    {
+        print("Resetting Config...");
+        defaultValues();
+        mapSettings();
+    }
+
+    protected void printSettings<SettingsType, T>(string title, Dictionary<SettingsType, T> settings) {
+        if (settings != null)
+        {
+            print("*** " + title + " ***");
+            foreach (var v in settings)
+            {
+                print(v.Key + " " + v.Value);
+            }
         }
     }
 
-    private void mapSettingsByType<SettingsType, T>(Dictionary<SettingsType,T> settings) {
-        print(Enum.GetValues(typeof(SettingsType)));
-        /*foreach (var pName in Enum.GetValues(typeof(SettingsType)))
-        {            
-            var property = GetType().GetField(pName.ToString());
-            if (property != null)
-            {
-                var value = property.GetValue(this);                
-                //print(pName + " " + value);
-                settings[(SettingsType)Enum.Parse(typeof(SettingsType), property.Name)] = (T)value;
-            }
-            else if (property.Name != "none") Debug.LogWarning(property.Name + " property value not set!");
-        }*/
-    }
+    protected void mapSettingsByType<SettingsType, T>(Dictionary<SettingsType,T> settings) {
+        print("base: " + GetType());
+        if (settings != null)
+        {
+            print("settings: " + settings);
+            print("settings: " + settings.GetType());
 
+            print(typeof(SettingsType));
+            print(Enum.GetValues(typeof(SettingsType)));
+            /*foreach (var pName in Enum.GetValues(typeof(SettingsType)))
+            {            
+                var property = GetType().GetField(pName.ToString());
+                if (property != null)
+                {
+                    var value = property.GetValue(this);                
+                    //print(pName + " " + value);
+                    settings[(SettingsType)Enum.Parse(typeof(SettingsType), property.Name)] = (T)value;
+                }
+                else if (property.Name != "none") Debug.LogWarning(property.Name + " property value not set!");
+            }*/
+        }
+    }
+    
     protected void mapSettings()
     {
+        print("base: " + GetType());
         mapSettingsByType(floatSettings);
+
         /*foreach (var sName in Enum.GetValues(typeof(FloatSettings)))
         {
             var property = GetType().GetField(sName.ToString());
@@ -94,20 +120,8 @@ public abstract class GameConfig : MonoBehaviour {
         */
 
         printSettings("Config floats' are ", floatSettings);
-        printSettings("Config ints' are ", intSettings);
-        printSettings("Config strings' are ", stringSettings);
-    }
-
-    public void OnValidate()
-    {
-        mapSettings();
-    }
-
-    public void Reset()
-    {
-        print("Resetting Config...");
-        defaultValues();
-        mapSettings();
+        //printSettings("Config ints' are ", intSettings);
+        //printSettings("Config strings' are ", stringSettings);
     }
 
     abstract protected void defaultValues();

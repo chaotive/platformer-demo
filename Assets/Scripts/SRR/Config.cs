@@ -24,7 +24,9 @@ public class Config : GameConfig {
     public int stageHeightMin;
     [HideInInspector]
     public int stageHeightMax;
-    
+
+    new public Dictionary<FloatSettings, float> floatSettings;
+
     new public enum FloatSettings
     {
         none,
@@ -40,7 +42,8 @@ public class Config : GameConfig {
     }
 
     protected override void defaultValues()
-    {        
+    {
+        floatSettings = new Dictionary<FloatSettings, float>();
         playerHp = 3;
         playerSpeed = 6f;
 
