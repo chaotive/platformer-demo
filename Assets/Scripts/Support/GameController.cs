@@ -14,6 +14,8 @@ public abstract class GameController<T> : MonoBehaviour
 
     static public T instance;
 
+    private HashSet<System.Enum> states;
+    
     public enum GameState
     {
         Playing, GameOver, Completed
@@ -46,5 +48,8 @@ public abstract class GameController<T> : MonoBehaviour
     {
         return instance.state == GameState.Playing;
     }
-    
+
+    static public void setState(System.Enum state) {
+        print("blah");
+    }
 }

@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Jump : MonoBehaviour
+public class Jump : Movement
 {
-    public bool goingRight = true;    
+    public bool facingRight = true;    
     public float maxVelocity = 8.5f;
 
     private float hAccelerationForce = 800;
     private float vAccelerationForce = 4000;
-    private bool jumped = false;
-    private bool onAir = false;
+    private bool jumped = false;    
     private Rigidbody2D body;
     
     void Start()
@@ -22,13 +21,13 @@ public class Jump : MonoBehaviour
     {
         if (Game.isPlaying())
         {            
-            bool goingUp = false;
+            var goingUp = false;
             if (GameInput.inputPressed && body.velocity.y < maxVelocity && !jumped) goingUp = true;
             else if (onAir) jumped = true;
 
             if (goingUp)
-            {
-                if (goingRight) body.AddForce(Vector2.right * hAccelerationForce * Time.deltaTime);
+            {                
+                if (facingRight) body.AddForce(Vector2.right * hAccelerationForce * Time.deltaTime);
                 else body.AddForce(Vector2.left * hAccelerationForce * Time.deltaTime);
                 body.AddForce(Vector2.up * vAccelerationForce * Time.deltaTime);
                 onAir = true;
