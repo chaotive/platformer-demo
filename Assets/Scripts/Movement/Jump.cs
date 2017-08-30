@@ -18,7 +18,8 @@ public class Jump : MonoBehaviour
     void Start()
     {                
         body = GetComponent<Rigidbody2D>();
-        maxVelocity = Config.instance.floatSettings[maxVelocityMap];
+        //maxVelocity = Config.instance.floatSettings[maxVelocityMap.ToString()];
+        maxVelocity = Config.floatSetting(maxVelocityMap);        
         print("JUMP " + maxVelocity);
     }
         

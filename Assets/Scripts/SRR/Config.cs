@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Config : GameConfig {
 
@@ -25,8 +21,6 @@ public class Config : GameConfig {
     [HideInInspector]
     public int stageHeightMax;
 
-    new public Dictionary<FloatSettings, float> floatSettings;
-
     new public enum FloatSettings
     {
         none,
@@ -42,8 +36,7 @@ public class Config : GameConfig {
     }
 
     protected override void defaultValues()
-    {
-        floatSettings = new Dictionary<FloatSettings, float>();
+    {        
         playerHp = 3;
         playerSpeed = 6f;
 

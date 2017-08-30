@@ -8,23 +8,15 @@ public class SrrController : GameController
 {
     public Text hpUi;
     public Text itemsUi;
-    
-    public static Config config;
+        
     new public static SrrController instance;
     
     private int items = 0;    
     private int hp = 1;
 
-    void Awake()
-    {
-        instance = this;
-    }
- 
-    new void Start()
-    {
-        base.Start();
-        config = GameObject.FindGameObjectWithTag("GameController").GetComponent<Config>();
-        hp = config.playerHp;
+    void Start()
+    {              
+        hp = Config.intSetting(Config.IntSettings.playerHp);
     }
     
     public void itemsUp()

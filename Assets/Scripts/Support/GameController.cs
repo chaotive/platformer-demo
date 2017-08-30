@@ -19,13 +19,10 @@ public abstract class GameController : MonoBehaviour
 
     void Awake() {
         instance = this;
+        state = GameState.Playing;
+        print("this is Awake");
     }
-
-    protected void Start()
-    {
-        state = GameState.Playing;                
-    }
-        
+    
     public void restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
