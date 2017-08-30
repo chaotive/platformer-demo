@@ -4,28 +4,23 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
-    public bool goingRight = true;
-    public float hAccelerationForce = 800;
-    public float vAccelerationForce = 4000;
-
+    public bool goingRight = true;    
     public float maxVelocity = 8.5f;
-    public Config.FloatSettings maxVelocityMap;    
 
+    private float hAccelerationForce = 800;
+    private float vAccelerationForce = 4000;
     private bool jumped = false;
     private bool onAir = false;
     private Rigidbody2D body;
     
     void Start()
     {                
-        body = GetComponent<Rigidbody2D>();
-        //maxVelocity = Config.instance.floatSettings[maxVelocityMap.ToString()];
-        maxVelocity = Config.floatSetting(maxVelocityMap);        
-        print("JUMP " + maxVelocity);
+        body = GetComponent<Rigidbody2D>();            
     }
         
     void FixedUpdate()
     {
-        if (GameController.isPlaying())
+        if (Game.isPlaying())
         {            
             bool goingUp = false;
             if (GameInput.inputPressed && body.velocity.y < maxVelocity && !jumped) goingUp = true;
@@ -38,10 +33,8 @@ public class Jump : MonoBehaviour
                 body.AddForce(Vector2.up * vAccelerationForce * Time.deltaTime);
                 onAir = true;
             }
-
             //print(body.velocity + " goingUp:" + goingUp + " onAir:" + onAir + " jumped:" + jumped);
-        }
-        else body.velocity = new Vector2(0, body.velocity.y); //TODO: Syncrhonize with Walk component
+        }        
     }
     
     public void stopJumping()

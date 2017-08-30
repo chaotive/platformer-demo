@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class Walk : MonoBehaviour
 {
-    public bool goingRight = true;
-    public float speed = 6f;
-         
-    private float hAccelerationForce = 800;    
-    private Vector2 maxVelocity;
-    
+    public bool goingRight = true;             
+    public float maxVelocity = 6f;
+    public Config.FloatSettings maxVelocityMap;
+
+    private float hAccelerationForce = 800;
     private Rigidbody2D body;
     
     void Start()
@@ -17,35 +16,20 @@ public class Walk : MonoBehaviour
         var direction = 1;
         if (!goingRight) direction = -1;
         body = GetComponent<Rigidbody2D>();
-        maxVelocity = new Vector2(speed * direction, 8.5f);
-
-        //Player
-        //maxVelocity = new Vector2(Game.config.playerSpeed * direction, 8.5f);
-        // Moving Enemy
-        //maxVelocity = new Vector2(Game.config.movingEnemiesSpeed * -1, 8.5f);
+        if (!Config.isNone(maxVelocityMap)) maxVelocity = Config.floatSetting(maxVelocityMap);
+        maxVelocity *= direction;
     }
     
     void FixedUpdate()
     {
-        if (GameController.isPlaying())
-        {
-            
-            if (goingRight && body.velocity.x < maxVelocity.x) body.AddForce(Vector2.right * hAccelerationForce * Time.deltaTime);
-            else if (body.velocity.x > maxVelocity.x) body.AddForce(Vector2.left * hAccelerationForce * Time.deltaTime);
-            
-            //print(name + " " + body.velocity);
-        }
-        else body.velocity = new Vector2(0, body.velocity.y); //TODO: Synchronize with jump velocity somehow
-
-        /*
-        // Moving Enemy
         if (Game.isPlaying())
         {
-            if (body.velocity.x > maxVelocity.x) body.AddForce(Vector2.left * accelerationForce * Time.deltaTime);
-            //print("Moving enemy: " + body.velocity);
+            
+            if (goingRight && body.velocity.x < maxVelocity) body.AddForce(Vector2.right * hAccelerationForce * Time.deltaTime);
+            else if (body.velocity.x > maxVelocity) body.AddForce(Vector2.left * hAccelerationForce * Time.deltaTime);            
+            print(name + " " + body.velocity);
         }
         else body.velocity = new Vector2(0, body.velocity.y);
-        */
     }
 
 }

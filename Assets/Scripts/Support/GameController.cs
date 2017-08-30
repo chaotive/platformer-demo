@@ -4,25 +4,27 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public abstract class GameController : MonoBehaviour
+public abstract class GameController<T> : MonoBehaviour 
+    where T : GameController<T>, new()
 {    
     public GameObject completedUi;
-    public GameObject overUi;    
-    public static GameController instance;
-
-    private GameState state;    
+    public GameObject overUi;
     
+    private GameState state;
+
+    static public T instance;
+
     public enum GameState
     {
         Playing, GameOver, Completed
     }
 
-    void Awake() {
-        instance = this;
-        state = GameState.Playing;
-        print("this is Awake");
+    void Awake()
+    {
+        instance = (T)this;
+        state = GameState.Playing;        
     }
-    
+
     public void restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -30,15 +32,13 @@ public abstract class GameController : MonoBehaviour
     
     static public void over()
     {
-        instance.state = GameState.GameOver;
-        //print("Game Over!");
+        instance.state = GameState.GameOver;        
         instance.overUi.SetActive(true);
     }
 
     static public void complete()
     {
-        instance.state = GameState.Completed;
-        //print("Game completed!");
+        instance.state = GameState.Completed;        
         instance.completedUi.SetActive(true);
     }
 

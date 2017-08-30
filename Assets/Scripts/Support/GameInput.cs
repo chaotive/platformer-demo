@@ -9,7 +9,7 @@ public class GameInput : MonoBehaviour
     void Update()
     {
         /* Input */
-        if (GameController.isPlaying())
+        if (Game.isPlaying())
         {
             if (Input.GetKey("space") || checkTouch()) inputPressed = true;
             else inputPressed = false;

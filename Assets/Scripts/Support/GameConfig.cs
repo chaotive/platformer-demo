@@ -74,4 +74,7 @@ public abstract class GameConfig : MonoBehaviour {
         return instance.stringSettings[setting.ToString()];
     }
 
+    static public bool isNone(Enum setting) {
+        return setting.ToString() == "none";
+    }
 }

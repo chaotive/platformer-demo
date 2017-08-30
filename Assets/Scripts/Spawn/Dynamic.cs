@@ -11,7 +11,7 @@ public class Dynamic : Spawner {
 
     void Update()
     {
-        if (GameController.isPlaying())
+        if (Game.isPlaying())
         {
             currentTime -= Time.deltaTime;
 

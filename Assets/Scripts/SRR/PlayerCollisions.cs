@@ -8,7 +8,7 @@ public class PlayerCollisions : MonoBehaviour {
     {
         switch (other.gameObject.tag)
         {
-            case "StageEnd": SrrController.complete(); break;
+            case "StageEnd": Game.complete(); break;
         }
     }
 
@@ -17,11 +17,11 @@ public class PlayerCollisions : MonoBehaviour {
         switch (other.tag)
         {
             case "Enemy":                
-                SrrController.instance.hpDown();
+                Game.instance.hpDown();
                 Destroy(other.gameObject);
                 break;
             case "Collectable":
-                SrrController.instance.itemsUp();
+                Game.instance.itemsUp();
                 Destroy(other.gameObject);
                 break;
         }

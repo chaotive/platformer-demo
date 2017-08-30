@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Predictive : Spawner
 {
-    public int minDistance = 0; //global, type dependant
+    public int minDistance = 0;
     public int stageLengthMin;
     public int stageLengthMax;
     public int stageHeightMin;

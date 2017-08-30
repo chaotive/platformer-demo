@@ -4,19 +4,20 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SrrController : GameController
+public class Game : GameController<Game>
 {
     public Text hpUi;
     public Text itemsUi;
-        
-    new public static SrrController instance;
     
     private int items = 0;    
     private int hp = 1;
+    private int damageAmount = 1;
 
     void Start()
-    {              
+    {
+        print(instance);
         hp = Config.intSetting(Config.IntSettings.playerHp);
+        damageAmount = Config.intSetting(Config.IntSettings.damageAmount);
     }
     
     public void itemsUp()
@@ -26,7 +27,7 @@ public class SrrController : GameController
 
     public void hpDown()
     {
-        hp--;
+        hp -= damageAmount;
         if (hp <= 0) over();
     }
     
