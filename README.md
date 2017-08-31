@@ -9,19 +9,20 @@ A Unity 5 runner demo, that has to do with a Robot and Savages running and doing
 - Facilitate data relationships handling.
 - Facilitate configuration data usage.
 
-
 ## Implementation summary:
 
 Without going into further detail on specifics code implementation. code follows the following folders organization:
+Note: **Folders** use bold, *source code files* uses italic and commentaries doesn't have an special format.
 
-- **Helpers** *Independant and isolated, self-contained components. Depending on it's natural growth, can become systems.*
-  - Bleh
-- **SRR** *Specific, current game code.*
-  - **Editor** *Game specific Unity editor configuration code*
-  - Game Class
-  - Config Class
-  - Other files
-- **Systems** *Main re-usable components hierarchy. It contains children systems folder, with particular components.*
+- **Helpers**: Independant and isolated, self-contained, non-mature components. Each file within contains an specific component. Depending on it's natural growth, can become systems.
+- **SRR**: Specific, current game code, for **S**avage **R**obot **R**un.
+  - **Adapted**: External scripts quickly adapted to work specifically for this game.
+  - **Editor**: Game specific Unity editor configuration code.
+  - *Game Class*: Implementation of abstract class GameController. This class should always be needed. It works as the main game controller, handling specific main state.
+  - *Config Class*: Implementation of abstract class GameConfig. If you want a global configuration, you should implement this class.
+  - ***Others***: Files and folders with game components that extend specific game logic.
+- **Systems**: Main re-usable components hierarchy. It contains children systems folders, with particular components within.
+  - **
 
 ## Specific architecture and design patterns application:
 
