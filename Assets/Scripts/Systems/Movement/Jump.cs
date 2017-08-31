@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Jump : Movement
+public class Jump : MonoBehaviour
 {
     public bool facingRight = true;    
     public float maxVelocity = 8.5f;
+    public bool onAir = false;
 
     private float hAccelerationForce = 800;
     private float vAccelerationForce = 4000;
@@ -22,7 +23,7 @@ public class Jump : Movement
         if (Game.isPlaying())
         {            
             var goingUp = false;
-            if (GameInput.inputPressed && body.velocity.y < maxVelocity && !jumped) goingUp = true;
+            if (InputController.inputPressed && body.velocity.y < maxVelocity && !jumped) goingUp = true;
             else if (onAir) jumped = true;
 
             if (goingUp)
@@ -31,8 +32,7 @@ public class Jump : Movement
                 else body.AddForce(Vector2.left * hAccelerationForce * Time.deltaTime);
                 body.AddForce(Vector2.up * vAccelerationForce * Time.deltaTime);
                 onAir = true;
-            }
-            //print(body.velocity + " goingUp:" + goingUp + " onAir:" + onAir + " jumped:" + jumped);
+            }            
         }        
     }
     

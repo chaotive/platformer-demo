@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ScenesHelper : MonoBehaviour {
+    [Tooltip("Name of the scene to load.")]
     public string sceneToLoadName;
     
     public void loadScene() {
-        SceneManager.LoadScene(sceneToLoadName);        
+        SceneManager.LoadScene(sceneToLoadName); // actual load of scene
     }
 }

@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dynamic : Spawner {
+public class Dynamic : MonoBehaviour
+{
 
     public Transform referencePositioner;
-    public int period = 5;    
+    public int period = 5;
+    public Transform spawnable;
+
     private float currentTime = 0;
     private Vector3 basePosition;
 

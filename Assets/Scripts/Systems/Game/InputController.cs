@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameInput : MonoBehaviour
+public class InputController : MonoBehaviour
 {    
     public static bool inputPressed = false;
     
     void Update()
     {
-        /* Input */
+        /* General Input */
         if (Game.isPlaying())
         {
             if (Input.GetKey("space") || checkTouch()) inputPressed = true;
@@ -23,8 +23,7 @@ public class GameInput : MonoBehaviour
         {
             if (Input.GetTouch(i).phase == TouchPhase.Began || Input.GetTouch(i).phase == TouchPhase.Moved || Input.GetTouch(i).phase == TouchPhase.Stationary)
             {
-                touched = true;
-                print("Touched! :)");
+                touched = true;                
                 break;
             }
         }

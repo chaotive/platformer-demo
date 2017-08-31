@@ -1,30 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+﻿using UnityEngine.UI;
 
-public class Game : GameController<Game>
+public class Game : GameController<Game> //extends GameController abstract base class with type parameter for specification of internal methods types
 {
-    public Text hpUi;
-    public Text itemsUi;
-    
-    private int items = 0;    
-    private int hp = 1;
-    private int damageAmount = 1;
+    public Text hpUi; //reference to health points UI object
+    public Text itemsUi; //reference to items score UI object
+
+    private int items = 0; //initial number of items. 
+    private int hp; //number of health points, to be retrieved from config on Start()
+    private int damageAmount; //damage amount, to be retrieved from config on Start()
 
     void Start()
-    {
-        print(instance);
+    {        
         hp = Config.intSetting(Config.IntSettings.playerHp);
         damageAmount = Config.intSetting(Config.IntSettings.damageAmount);
     }
     
+    //raises number of items
     public void itemsUp()
     {
         items++;
     }
 
+    //lowers health points based on damage amount. Eventually triggers game over through GameController base class
     public void hpDown()
     {
         hp -= damageAmount;
@@ -33,17 +30,8 @@ public class Game : GameController<Game>
     
     void Update()
     {
-        hpUi.text = "HP: " + hp.ToString();
-        itemsUi.text = "Items: " + items.ToString();
+        hpUi.text = "HP: " + hp.ToString(); //updates number of health points UI display
+        itemsUi.text = "Items: " + items.ToString(); //updates items score UI display
     }
     
 }
-
-//Tutorials:
-// Game Manager
-// https://unity3d.com/es/learn/tutorials/projects/2d-roguelike-tutorial/writing-game-manager
-// Singleton
-// http://clearcutgames.net/home/?p=437
-// Settings on Menu
-// https://gamedev.stackexchange.com/questions/74393/how-to-edit-key-value-pairs-like-a-dictionary-in-unitys-inspector
-// Reflection
