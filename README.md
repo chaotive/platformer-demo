@@ -6,8 +6,8 @@ A Unity 5 runner demo, that has to do with a Robot and Savages running and doing
 - Maximize re-usability of game components.
 - Maximize code scalability.
 - Produce easy to understand and self-documenting high level code components.
-- Facilitate data relationships handling.
-- Facilitate configuration data usage.
+- Facilitate data relationships handling, as a decouppled from code components element.
+- Facilitate global configuration data usage.
 - Not depending on external, already generic programming frameworks. Code design should favor natural growth.
 
 ## Implementation summary:
@@ -31,16 +31,17 @@ Note: **Folders** use bold, *source code files* uses italic and commentaries doe
 
 ## Specific architecture and design patterns application:
 
-- ECS: Entity-component-system architectural pattern. This is the main pattern used to design the game, although the system element of the pattern (as a full object) has not matured much on this particular game design. Right now, systems are working more as a organizational unit rather than a manager instance in the game. In any case, EC(S) approach allows for re-usability and decouppling of game objects and it's kind of the patterns that Unity naturally flows. A good read about this and other patterns applied to games can be found on [Techniques and Strategies for Data-driven design in Game Development](http://web.eecs.umich.edu/~soar/Classes/494/talks/Schumaker.pdf) by Scott Shumaker.
-- Data Driven: 
-- Singleton:
-- Framework: Although not specifically 
-- OOP
-- StateMachine
+- ECS: Entity-component-system architectural pattern. This is one of the most common game design patterns and one the main design pattern used used to design the game, although the system element of the pattern (as a full object) has not matured much on this particular game design. Right now, systems are working more as a organizational unit rather than a manager instance in the game. In any case, EC(S) approach allows for re-usability and decouppling of game objects and it's kind of the patterns that Unity naturally flows. A good read about this and other patterns applied to games can be found on [Techniques and Strategies for Data-driven design in Game Development](http://web.eecs.umich.edu/~soar/Classes/494/talks/Schumaker.pdf) by Scott Shumaker.
+- Data-Driven Design: This is another of the most common game design patterns and one the other main design pattern used used to design the game. In this case, this mainly affect the global configuration component of the game and it's abbility to allow for  decouppled components to still interact with a global configuration, without depending on the specific data structure of the game. Unity already data-driven friendly design also helps a lot for using this design pattern. Same as with ECS, a good read about this and other patterns applied to games can be found on [Techniques and Strategies for Data-driven design in Game Development](http://web.eecs.umich.edu/~soar/Classes/494/talks/Schumaker.pdf) by Scott Shumaker.
+- Singleton: This is one of the most common generally used design patterns. In the game it is used to access global game state and configuration. Unity facilites it's pseudo implementation, because of clear game process flow stages to instantiate, although on more complex designs also a helper lazy initialization to allow further decouppling can be recommended.
+- Template: The way GameController and GameConfig clases provides for certain basic functionality and request for certain specifics methods to be implemented on an specific game basis.
+- State: Global configuration options summarize it's posibilites by a set of differentes states than can be selected by the developer to apply from configuration. Main game states are based on a series of possible states that the game can pass at a given time.
+- Framework: Although not a design pattern by itself, the general organization and implementation recommendations to use the code on a general scope tend to consider about the whole design approach for the game as a Framework.
 
 ## Further improvement opportunities:
 
-- Implement spawn generator through usage of object pooling design pattern (althought usage of this design pattern has more to do with eficiency, which is not a design goal).
+- Use systems with a Manager, that follows a more controlled Factory pattern.
+- Implement spawn generator through usage of Object pooling pattern (althought usage of this design pattern has more to do with eficiency, which is not a design goal).
 - Better implementation of input handling methods, either trough better generalization of InputController or usage of Unity InputManager.
 
 ## Known issues:
