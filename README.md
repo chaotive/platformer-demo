@@ -14,18 +14,19 @@ A Unity 5 runner demo, that has to do with a Robot and Savages running and doing
 Without going into further detail on specifics code implementation. code follows the following folders organization:
 Note: **Folders** use bold, *source code files* uses italic and commentaries doesn't have an special format.
 
+- **Game**: System that provides components for running a basic game. This system and it's components are always assumed to be present by all other components.
+  - *GameController class*: Provides basic game state control with pre-defined generic game states and UI placeholders.
+  - *GameConfig class*: Provides a set of global configuration definitions, that extend to be used even on Unity Editor.
 - **Helpers**: Independant and isolated, self-contained, non-mature components. Each file within contains an specific component. Depending on it's natural growth, can become systems.
 - **SRR**: Specific, current game code, for **S**avage **R**obot **R**un.
   - **Adapted**: External scripts quickly adapted to work specifically for this game.
   - **Editor**: Game specific Unity editor configuration code.
-  - *Game class*: Implementation of abstract class GameController. This class should always be needed. It works as the main game controller, handling specific main state.
-  - *Config class*: Implementation of abstract class GameConfig. If you want a global configuration, you should implement this class.
+  - *Game class*: Implementation of abstract class GameController. This class should always be needed. It works as the main game controller, handling specific global state.
+  - *Config class*: Implementation of abstract class GameConfig. If you want a global configuration, you should implement this class, although it is currently always required.
   - ***Others***: Files and folders with game components that extend specific game logic.
-- **Systems**: Main re-usable components hierarchy. It contains children systems folders, with particular components within.
-  - **Game**: System that provides components for running a basic game.
-    - *GameController class*: Provides basic game state control with pre-defined generic game states and UI placeholders.
-  - **Movement**    
-  - **Spawn**
+- **Systems**: Main re-usable components hierarchy. It contains children systems folders, with particular components within. Each system should only strongly depend on Game system definitions or own system components, on a decoupled fashion.
+  - **Movement**: Movement system components, currently supports walking and jumping. 
+  - **Spawn**: Spawn objects system, currently supports dynamic and predictive like spawning components.
 
 ## Specific architecture and design patterns application:
 
