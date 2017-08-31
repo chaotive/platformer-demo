@@ -7,6 +7,7 @@ Design goals:
 - Maximize code scalability.
 - Facilitate data relationships handling.
 - Facilitate configuration data usage.
+- Produce easy to understand and self-documenting high level code components.
 
 Implementation summary:
 
