@@ -8,7 +8,7 @@ public abstract class GameController<T> : MonoBehaviour
     where T : GameController<T>, new() // we extend GameController class with a Generic GameController children type, to allow for correct types propagation when using statics and singleton on the rest of the game
 {
     /// <summary>  
-    ///  This component allows for generalization of game state control, by extending it on concrete classes. 
+    ///  This component allows for generalization of common game state control, by extending it on concrete classes. 
     ///  The design goal of these components was to allow for reusability of common high level game states, such as playing, game over, completed.
     /// </summary> 
 

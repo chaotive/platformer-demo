@@ -4,11 +4,11 @@ using UnityEngine;
 
 public abstract class GameConfig : MonoBehaviour {
     /// <summary>  
-    ///  This component allows for generalization of game configuration, by extending it on concrete classes. 
+    ///  This component allows for generalization of global game configuration, by extending it on concrete classes. 
     ///  The design goal of these configuration components was to allow for typed definitions of typed settings to be easily shared on Unity editor, while also allowing both runtime and typed checks on configuration values.
     /// </summary> 
 
-    // base values for float, int and string type of settings names definitions, makes evident usage of none as default value
+    // base values for float, int and string type of settings names definitions, it also makes evident usage of none as default value
     public enum FloatSettings { none }
     public enum IntSettings { none }
     public enum StringSettings { none }
