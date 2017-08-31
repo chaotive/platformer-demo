@@ -15,8 +15,8 @@ Without going into further detail on specifics code implementation. code follows
 Note: **Folders** use bold, *source code files* uses italic and commentaries doesn't have an special format.
 
 - **Game**: System that provides components for running a basic game. This system and it's components are always assumed to be present by all other components.
-  - *GameController class*: Provides basic game state control with pre-defined generic game states and UI placeholders.
-  - *GameConfig class*: Provides a set of global configuration definitions, that extend to be used even on Unity Editor.
+  - *GameController class*: Abstract class that provides basic game state control with pre-defined generic game states and UI placeholders.
+  - *GameConfig class*: Abstract class that provides a set of global configuration definitions, that extend to be used even on Unity Editor.
 - **Helpers**: Independant and isolated, self-contained, non-mature components. Each file within contains an specific component. Depending on it's natural growth, can become systems.
 - **SRR**: Specific, current game code, for **S**avage **R**obot **R**un.
   - **Adapted**: External scripts quickly adapted to work specifically for this game.
