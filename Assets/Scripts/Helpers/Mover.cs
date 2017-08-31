@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Mover : MonoBehaviour {
+    /// <summary>  
+    ///  This component allows for current object to move constantly on a direction, up to a limit, and then coming back from it.    
+    /// </summary> 
 
     [Tooltip("How much to move on every update.")]
     public float amount = 0.1f;

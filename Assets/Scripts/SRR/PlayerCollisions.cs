@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCollisions : MonoBehaviour {
+    /// <summary>  
+    ///  This component allows to detect specific player collisions.         
+    /// </summary> 
 
     public void OnCollisionEnter2D(Collision2D other) // collision callback mapping
     {

@@ -2,6 +2,10 @@
 
 public class Game : GameController<Game> //extends GameController abstract base class with type parameter for specification of internal methods types
 {
+    /// <summary>  
+    ///  This component allows to keep specific Game state, by extending GameController base class. In this case the game is SRR (Savage Robot Run!).    
+    /// </summary> 
+
     public Text hpUi; //reference to health points UI object
     public Text itemsUi; //reference to items score UI object
 

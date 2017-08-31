@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Follower : MonoBehaviour {
+    /// <summary>  
+    ///  This component allows for the current object to follow another.     
+    /// </summary> 
 
     [Tooltip("The object to follow.")]
     public Transform followed;
@@ -19,7 +22,7 @@ public class Follower : MonoBehaviour {
     }
 
     void Update() {        
-        // updating position to follow followed object
+        // updating position to follow followed object, applying corresponde axis intensity (how closely following on that axis)
         if (followed != null) transform.position = new Vector3( 
             followed.position.x * xIntensity + basePosition.x, 
             followed.position.y * yIntensity + basePosition.y);        

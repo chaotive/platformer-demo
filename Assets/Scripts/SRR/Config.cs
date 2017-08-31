@@ -1,7 +1,12 @@
 ﻿using UnityEngine;
 
-public class Config : GameConfig //extends GameConfig abstract base class
-{    
+public class Config : GameConfig //extends and actually implements GameConfig abstract base class
+{
+    /// <summary>  
+    ///  This component allows configuration to be specifically tailored for each game, by extending generalizations on GameConfig class.     
+    ///  Configuration definitions on this component will be easily shared on Unity editor and game code.
+    /// </summary> 
+
     [Tooltip("The player maximimum velocity.")]
     public float playerSpeed;
     [Tooltip("The moving enemy maximimum velocity.")]
