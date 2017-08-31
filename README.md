@@ -1,13 +1,14 @@
 # Savage Robot Run
-A Unity 5 runner demo, that has to do with a Robot and Savages running and doing other stuff. It works as a technical demo to show application of several architecture and programming techniques.
+A Unity 5 runner demo, that has to do with a Robot and Savages running and doing other stuff. It works as a technical demo to show application of several programming techniques.
 
-## Main design goals:
+## Main programming design goals:
 
 - Maximize re-usability of game components.
 - Maximize code scalability.
 - Produce easy to understand and self-documenting high level code components.
 - Facilitate data relationships handling.
 - Facilitate configuration data usage.
+- Not depending on external, already generic programming frameworks. Code design should favor natural growth.
 
 ## Implementation summary:
 
@@ -29,6 +30,13 @@ Note: **Folders** use bold, *source code files* uses italic and commentaries doe
   - **Spawn**: Spawn objects system, currently supports dynamic and predictive like spawning components.
 
 ## Specific architecture and design patterns application:
+
+- ECS: Entity-component-system architectural pattern. This is the main pattern used to design the game, although the system element of the pattern (as a full object) has not matured much on this particular game design. Right now, systems are working more as a organizational unit rather than a manager instance in the game. In any case, EC(S) approach allows for re-usability and decouppling of game objects and it's kind of the patterns that Unity naturally flows. A good read about this and other patterns applied to games can be found on [Techniques and Strategies for Data-driven design in Game Development](http://web.eecs.umich.edu/~soar/Classes/494/talks/Schumaker.pdf) by Scott Shumaker.
+- Data Driven: 
+- Singleton:
+- Framework: Although not specifically 
+- OOP
+- StateMachine
 
 ## Further improvement opportunities:
 
