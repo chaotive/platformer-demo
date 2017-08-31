@@ -18,11 +18,14 @@ Note: **Folders** use bold, *source code files* uses italic and commentaries doe
 - **SRR**: Specific, current game code, for **S**avage **R**obot **R**un.
   - **Adapted**: External scripts quickly adapted to work specifically for this game.
   - **Editor**: Game specific Unity editor configuration code.
-  - *Game Class*: Implementation of abstract class GameController. This class should always be needed. It works as the main game controller, handling specific main state.
-  - *Config Class*: Implementation of abstract class GameConfig. If you want a global configuration, you should implement this class.
+  - *Game class*: Implementation of abstract class GameController. This class should always be needed. It works as the main game controller, handling specific main state.
+  - *Config class*: Implementation of abstract class GameConfig. If you want a global configuration, you should implement this class.
   - ***Others***: Files and folders with game components that extend specific game logic.
 - **Systems**: Main re-usable components hierarchy. It contains children systems folders, with particular components within.
-  - **
+  - **Game**: System that provides components for running a basic game.
+    - *GameController class*: Provides basic game state control with pre-defined generic game states and UI placeholders.
+  - **Movement**    
+  - **Spawn**
 
 ## Specific architecture and design patterns application:
 
